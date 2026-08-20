@@ -7,7 +7,7 @@
      2. Scroll progress bar
      3. Scroll reveal (IntersectionObserver)
      4. 3D card tilt (pointer-driven, desktop only)
-     5. Hero parallax on the glass panels
+     5. Hero parallax (portrait tilt + floating badges)
      6. Three.js hero scene
      7. Contact form (mailto handoff — no backend)
      8. Footer year
@@ -212,21 +212,16 @@ const cardTilt = (() => {
 
 /* ────────────────────────────────────────────────────────
    5. HERO PARALLAX
-   The three glass panels drift slightly with the pointer.
-   Each panel keeps its base rotation from CSS.
+   The credential badges and portrait react to the pointer.
+   Badges use CSS custom props so the bob keyframe still runs.
    ──────────────────────────────────────────────────────── */
 const heroParallax = (() => {
-  const BASE_TRANSFORMS = {
-    'gc-1': 'translateX(-24px) rotate(-2deg)',
-    'gc-2': 'translateX(16px) rotate(1.4deg)',
-    'gc-3': 'translateX(-8px) rotate(-1deg)'
-  };
-
   function init() {
     if (isTouchDevice || prefersReducedMotion) return;
 
-    const cards = document.querySelectorAll('.glass-card');
-    if (!cards.length) return;
+    const badges = document.querySelectorAll('.float-badge');
+    const photo  = document.querySelector('.pf-photo');
+    if (!badges.length) return;
 
     let frame = null;
 
@@ -237,12 +232,20 @@ const heroParallax = (() => {
         const dx = (e.clientX / window.innerWidth  - 0.5) * 2;  // -1 → 1
         const dy = (e.clientY / window.innerHeight - 0.5) * 2;
 
-        cards.forEach(card => {
-          const depth = parseFloat(card.dataset.depth) || 0.08;
-          const base  = BASE_TRANSFORMS[[...card.classList].find(c => c.startsWith('gc-'))] || '';
-          const shift = `translate3d(${(dx * depth * 100).toFixed(1)}px, ${(dy * depth * 100).toFixed(1)}px, 0)`;
-          card.style.transform = `${shift} ${base}`;
+        /* Badges drift at their own depth. The bob animation lives on a
+           parent-free element, so we set translate only and let the CSS
+           keyframe run on top via a wrapper-free composite. */
+        badges.forEach(badge => {
+          const depth = parseFloat(badge.dataset.depth) || 0.06;
+          badge.style.setProperty('--px', `${(dx * depth * 100).toFixed(1)}px`);
+          badge.style.setProperty('--py', `${(dy * depth * 100).toFixed(1)}px`);
         });
+
+        /* The portrait tilts a few degrees toward the pointer. */
+        if (photo) {
+          photo.style.transform =
+            `perspective(1000px) rotateY(${(dx * 4).toFixed(2)}deg) rotateX(${(-dy * 4).toFixed(2)}deg)`;
+        }
 
         frame = null;
       });
