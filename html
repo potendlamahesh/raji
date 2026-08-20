@@ -115,23 +115,27 @@
       </ul>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
-      <!-- Three.js renders behind; this holds layered glass panels -->
-      <div class="glass-stack">
-        <div class="glass-card gc-1" data-depth="0.06">
-          <span class="gc-label">Certified</span>
-          <strong>IBM SkillsBuild</strong>
-          <small>AI Fundamentals</small>
+    <div class="hero-visual">
+      <div class="portrait-frame">
+        <div class="pf-ring" aria-hidden="true"></div>
+        <div class="pf-ring pf-ring-2" aria-hidden="true"></div>
+        <div class="pf-photo">
+          <img src="images/rajeswari.png"
+               alt="Portrait of Rajeswari Ramanaboina"
+               width="440" height="440" loading="eager" decoding="async" />
         </div>
-        <div class="glass-card gc-2" data-depth="0.10">
-          <span class="gc-label">Certified</span>
-          <strong>Infosys Springboard</strong>
-          <small>Cybersecurity Fundamentals</small>
+
+        <div class="float-badge fb-1" data-depth="0.05" aria-hidden="true">
+          <span class="fb-icon">🎓</span>
+          <span class="fb-body"><strong>ANU Guntur</strong><small>B.Tech Cybersecurity</small></span>
         </div>
-        <div class="glass-card gc-3" data-depth="0.14">
-          <span class="gc-label">Certified</span>
-          <strong>LinkedIn Learning</strong>
-          <small>Microsoft Security Copilot</small>
+        <div class="float-badge fb-2" data-depth="0.09" aria-hidden="true">
+          <span class="fb-icon">🛡️</span>
+          <span class="fb-body"><strong>IBM &amp; Infosys</strong><small>Certified</small></span>
+        </div>
+        <div class="float-badge fb-3" data-depth="0.07" aria-hidden="true">
+          <span class="fb-icon">🐍</span>
+          <span class="fb-body"><strong>Python</strong><small>CodeAlpha Intern</small></span>
         </div>
       </div>
     </div>
@@ -275,55 +279,82 @@
     <span class="section-rule" aria-hidden="true"></span>
   </header>
 
-  <!-- ⚠️ PLACEHOLDER SECTION ⚠️
-       You have not yet given me details of specific projects.
-       Replace the placeholder cards below with your real project
-       name, description, technologies, features and links. -->
-  <div class="placeholder-note reveal">
-    <strong>Add your projects here.</strong>
-    Replace the three placeholder cards below in <code>index.html</code>
-    with your real project name, description, technologies and links.
-  </div>
+  <p class="section-note reveal">
+    Projects I'm building to apply my cybersecurity and Python coursework.
+    Each card links to its repository once the build is published.
+  </p>
 
   <div class="projects-grid">
-    <article class="project-card reveal is-placeholder">
+
+    <article class="project-card reveal">
       <div class="pc-top">
         <span class="pc-index">01</span>
-        <span class="pc-flag">Placeholder</span>
+        <span class="pc-flag pc-flag-build">In development</span>
       </div>
-      <h3 class="pc-title">[ Your project name ]</h3>
-      <p class="pc-desc">[ Short description of what this project does and the problem it solves. ]</p>
+      <h3 class="pc-title">AI Chatbot with Memory</h3>
+      <p class="pc-desc">
+        A conversational assistant that remembers context across sessions.
+        Stores conversation history in a vector database, retrieves relevant
+        past exchanges on each turn, and feeds them back into the prompt so the
+        bot recalls earlier topics instead of starting fresh every time.
+      </p>
+      <ul class="pc-features">
+        <li>Persistent conversation memory across sessions</li>
+        <li>Semantic retrieval of relevant past messages</li>
+        <li>Web chat interface with streaming replies</li>
+      </ul>
       <ul class="pc-tags">
-        <li>[ Tech 1 ]</li><li>[ Tech 2 ]</li><li>[ Tech 3 ]</li>
+        <li>Python</li><li>LLM API</li><li>Vector DB</li><li>Flask</li>
       </ul>
       <a href="#" class="pc-link" data-placeholder="project-url">View Project →</a>
     </article>
 
-    <article class="project-card reveal is-placeholder">
+    <article class="project-card reveal">
       <div class="pc-top">
         <span class="pc-index">02</span>
-        <span class="pc-flag">Placeholder</span>
+        <span class="pc-flag pc-flag-build">In development</span>
       </div>
-      <h3 class="pc-title">[ Your project name ]</h3>
-      <p class="pc-desc">[ Short description of what this project does and the problem it solves. ]</p>
+      <h3 class="pc-title">Phishing URL Detector</h3>
+      <p class="pc-desc">
+        A security tool that classifies whether a URL is likely phishing.
+        Extracts lexical and host-based features — domain age, character
+        patterns, subdomain depth, HTTPS presence — and scores them with a
+        trained classifier to flag suspicious links before a user clicks.
+      </p>
+      <ul class="pc-features">
+        <li>Feature extraction from URL structure and host data</li>
+        <li>Machine-learning classification with confidence score</li>
+        <li>Batch scanning and single-URL lookup</li>
+      </ul>
       <ul class="pc-tags">
-        <li>[ Tech 1 ]</li><li>[ Tech 2 ]</li>
+        <li>Python</li><li>scikit-learn</li><li>Pandas</li><li>Streamlit</li>
       </ul>
       <a href="#" class="pc-link" data-placeholder="project-url">View Project →</a>
     </article>
 
-    <article class="project-card reveal is-placeholder">
+    <article class="project-card reveal">
       <div class="pc-top">
         <span class="pc-index">03</span>
-        <span class="pc-flag">Placeholder</span>
+        <span class="pc-flag pc-flag-build">In development</span>
       </div>
-      <h3 class="pc-title">[ Your project name ]</h3>
-      <p class="pc-desc">[ Short description of what this project does and the problem it solves. ]</p>
+      <h3 class="pc-title">Password Strength Analyzer</h3>
+      <p class="pc-desc">
+        A command-line tool that evaluates password strength beyond simple
+        length rules. Calculates entropy, detects keyboard patterns and common
+        substitutions, checks against a breached-password wordlist, and returns
+        a score with specific guidance on what to improve.
+      </p>
+      <ul class="pc-features">
+        <li>Entropy calculation and pattern detection</li>
+        <li>Breached-wordlist matching</li>
+        <li>Actionable feedback, not just a pass or fail</li>
+      </ul>
       <ul class="pc-tags">
-        <li>[ Tech 1 ]</li><li>[ Tech 2 ]</li>
+        <li>Python</li><li>RegEx</li><li>hashlib</li><li>CLI</li>
       </ul>
       <a href="#" class="pc-link" data-placeholder="project-url">View Project →</a>
     </article>
+
   </div>
 </section>
 
