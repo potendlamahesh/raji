@@ -1047,3 +1047,11 @@ a.contact-row:hover{
   }
   .reveal{ opacity:1; transform:none; }
 }
+/* Prevent the profile image from being dragged */
+.pf-photo img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+}
